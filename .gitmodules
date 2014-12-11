@@ -1,0 +1,12 @@
+[submodule "addons/languages/German"]
+	path = addons/languages/German
+	url = https://github.com/oliverschwarz/esotalk-german-language.git
+[submodule "addons/plugins/Bookmarks"]
+	path = addons/plugins/Bookmarks
+	url = https://github.com/esotalk/Bookmarks.git
+[submodule "addons/plugins/ChannelNotifications"]
+	path = addons/plugins/ChannelNotifications
+	url = https://github.com/esotalk/ChannelNotifications.git
+[submodule "addons/plugins/Likes"]
+	path = addons/plugins/Likes
+	url = https://github.com/esotalk/Likes.git
