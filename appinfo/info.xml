@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<info>
+    <id>board</id>
+    <name>Message Board</name>
+    <description>This app integrates the esoTalk forum into ownCloud. It provides a communication board to have discussions between users.</description>
+    <licence>GPL</licence>
+    <author>The authors of esoTalk, adapted by Michael Roitzsch</author>
+    <version>0.1</version>
+    <requiremin>7.0</requiremin>
+</info>
