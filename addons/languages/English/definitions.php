@@ -20,6 +20,7 @@ $definitions["date.full"] = "%c";
 
 $definitions["%d day ago"] = "yesterday";
 $definitions["%d days ago"] = "%d days ago";
+$definitions["%d hidden"]  = "%d hidden";
 $definitions["%d hour ago"] = "1 hour ago";
 $definitions["%d hours ago"] = "%d hours ago";
 $definitions["%d minute ago"] = "1 minute ago";
@@ -104,6 +105,7 @@ $definitions["Channel List"] = "Channel List";
 $definitions["Channel title"] = "Channel title";
 $definitions["Channel slug"] = "Channel slug";
 $definitions["Channels"] = "Channels";
+$definitions["Choose a Channel"] = "Choose a Channel";
 $definitions["Choose a secure password of at least %s characters"] = "Choose a secure password of at least %s characters";
 $definitions["Choose what people will see when they first visit your forum."] = "Choose what people will see when they first visit your forum.";
 $definitions["Click on a member's name to remove them."] = "Click on a member's name to remove them.";
@@ -200,11 +202,13 @@ $definitions["Guests can view the:"] = "Guests can view the:";
 $definitions["Header"] = "Header";
 $definitions["Header color"] = "Header color";
 $definitions["Heads Up!"] = "Heads Up!";
+$definitions["hidden"] = "hidden";
 $definitions["Hide"] = "Hide";
 $definitions["Home page"] = "Home page";
 $definitions["HTML is allowed."] = "HTML is allowed.";
 
 $definitions["If you run into any other problems or just want some help with the installation, feel free to ask for assistance at the <a href='%s'>esoTalk support forum</a>."] = "If you run into any other problems or just want some help with the installation, feel free to ask for assistance at the <a href='%s'>esoTalk support forum</a>.";
+$definitions["Ignore conversation"] = "Ignore conversation";
 $definitions["Install esoTalk"] = "Install esoTalk";
 $definitions["Install My Forum"] = "Install My Forum";
 $definitions["Installed Languages"] = "Installed Languages";
@@ -285,6 +289,7 @@ $definitions["Notifications"] = "Notifications";
 $definitions["Now"] = "Now";
 
 $definitions["OK"] = "OK";
+$definitions["Older"] = "Older";
 $definitions["Online"] = "Online";
 $definitions["online"] = "online";
 $definitions["Only allow members of this group to see who else is in it"] = "Only allow members of this group to see who else is in it";
@@ -303,6 +308,7 @@ $definitions["Posts"] = "Posts";
 $definitions["Powered by"] = "Powered by";
 $definitions["Preview"] = "Preview";
 $definitions["Previous"] = "Previous";
+$definitions["Primary color"] = "Primary color";
 
 $definitions["Quote"] = "Quote";
 $definitions["quote"] = "quote";
@@ -397,6 +403,7 @@ $definitions["View more"] = "View more";
 $definitions["View your profile"] = "View your profile";
 $definitions["View"] = "View";
 $definitions["Viewing: %s"] = "Viewing: %s";
+$definitions["Viewing %s"] = "Viewing %s";
 $definitions["viewingPosts"] = "<b>%s-%s</b> of %s posts";
 
 $definitions["Warning"] = "Warning";
@@ -452,6 +459,7 @@ $definitions["message.gambitsHelp"] = "Gambits are phrases that describe what yo
 $definitions["message.gdNotEnabledWarning"] = "<strong>The GD extension is not enabled.</strong> This is required to resize and save avatars. Get your host or administrator to install/enable it.";
 $definitions["message.greaterMySQLVersionRequired"] = "<strong>You must have MySQL 4 or greater installed and the <a href='http://php.net/manual/en/mysql.installation.php' target='_blank'>MySQL extension enabled in PHP</a>.</strong> Please install/upgrade both of these requirements or request that your host or administrator install them.";
 $definitions["message.greaterPHPVersionRequired"] = "<strong>Your server must have PHP %s or greater installed to run esoTalk.</strong> Please upgrade your PHP installation or request that your host or administrator upgrade the server.";
+$definitions["message.groupsHelp"] = "Groups are used to categorize members on your forum. You can create as many groups as needed.";
 $definitions["message.incorrectLogin"] = "Your login details were incorrect.";
 $definitions["message.incorrectPassword"] = "Your current password is incorrect.";
 $definitions["message.installerAdminHelp"] = "esoTalk will use the following information to set up your administrator account on your forum.";
@@ -558,6 +566,7 @@ $definitions["gambit.ignored"] = "ignored";
 $definitions["gambit.sticky"] = "sticky";
 $definitions["gambit.unread"] = "unread";
 $definitions["gambit.limit:"] = "limit:";
+$definitions["gambit.title:"] = "title:";
 
 // Aliases
 // These are gambits which tell the gambit system to use another gambit.

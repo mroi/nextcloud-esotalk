@@ -40,14 +40,14 @@ public $title = "";
  * An array of JavaScript files to be included in the head of the page.
  * @var array
  */
-private $jsFiles = array("global" => array(), "local" => array());
+private $jsFiles = array("global" => array(), "local" => array(), "remote" => array());
 
 
 /**
  * An array of CSS files to be included in the head of the page.
  * @var array
  */
-private $cssFiles = array("global" => array(), "local" => array());
+private $cssFiles = array("global" => array(), "local" => array(), "remote" => array());
 
 
 /**
@@ -236,6 +236,9 @@ public function messages($messages, $options = "")
  */
 public function notificationMessages($notifications)
 {
+	// Only show the first 3 notifications.
+	$notifications = array_slice($notifications, 0, 3);
+	
 	foreach ($notifications as $notification) {
 
 		// If we've already shown this notification as a message before, don't show it again.
@@ -307,15 +310,13 @@ public function init()
 
 		// Set up some default JavaScript files and language definitions.
 		$this->addJSFile("core/js/lib/jquery.js", true);
+		$this->addJSFile("core/js/lib/jquery.migrate.js", true);
 		$this->addJSFile("core/js/lib/jquery.misc.js", true);
 		$this->addJSFile("core/js/lib/jquery.history.js", true);
 		$this->addJSFile("core/js/lib/jquery.scrollTo.js", true);
 		$this->addJSFile("core/js/global.js", true);
 		$this->addJSLanguage("message.ajaxRequestPending", "message.ajaxDisconnected", "Loading...", "Notifications");
 		$this->addJSVar("notificationCheckInterval", C("esoTalk.notificationCheckInterval"));
-
-		// If config/custom.css contains something, add it to be included in the page.
-		if (file_exists($file = PATH_CONFIG."/custom.css") and filesize($file) > 0) $this->addCSSFile("config/custom.css", true);
 
 	}
 
@@ -453,6 +454,11 @@ public function render($view = "")
 
 			// Fetch the content of the view, passing the data collected in the controller.
 			if ($view) $data["content"] = $this->getViewContents($view, $this->data);
+
+			// If config/custom.css contains something, add it to be included in the page.
+			if (file_exists($file = PATH_CONFIG."/custom.css") and filesize($file) > 0) {
+				$this->addCSSFile("config/custom.css", true);
+			}
 
 			// Add the <head> contents and the page title.
 			$data["head"] = $this->head();
@@ -695,7 +701,7 @@ public function addJSFile($file, $global = false)
 {
 	if (strpos($file, "://") !== false) $key = "remote";
 	$key = $global ? "global" : "local";
-	$this->jsFiles[$key][] = $file;
+	if (!in_array($file, $this->jsFiles[$key])) $this->jsFiles[$key][] = $file;
 }
 
 
@@ -712,7 +718,7 @@ public function addCSSFile($file, $global = false)
 {
 	if (strpos($file, "://") !== false) $key = "remote";
 	else $key = $global ? "global" : "local";
-	$this->cssFiles[$key][] = $file;
+	if (!in_array($file, $this->cssFiles[$key])) $this->cssFiles[$key][] = $file;
 }
 
 
@@ -808,6 +814,16 @@ public function head()
 
 	}
 
+	// Output all necessary config variables and language definitions, as well as other variables.
+	$esoTalkJS = array(
+		"webPath" => ET::$webPath.((C("esoTalk.urls.friendly") and !C("esoTalk.urls.rewrite")) ? "/index.php" : ""),
+		"userId" => ET::$session->user ? (int)ET::$session->userId : false,
+		"token" => ET::$session->token,
+		"debug" => C("esoTalk.debug"),
+		"language" => $this->jsLanguage
+	) + (array)$this->jsData;
+	$head .= "<script>var ET=".json_encode($esoTalkJS)."</script>\n";
+
 	// Add remote JavaScript.
 	if (!empty($this->jsFiles["remote"])) {
 		foreach ($this->jsFiles["remote"] as $url) {
@@ -831,17 +847,6 @@ public function head()
 		foreach ($files as $file)
 			$head .= "<script src='".getResource($file)."?".filemtime($file)."'></script>\n";
 	}
-
-
-	// Output all necessary config variables and language definitions, as well as other variables.
-	$esoTalkJS = array(
-		"webPath" => ET::$webPath.((C("esoTalk.urls.friendly") and !C("esoTalk.urls.rewrite")) ? "/index.php" : ""),
-		"userId" => ET::$session->user ? (int)ET::$session->userId : false,
-		"token" => ET::$session->token,
-		"debug" => C("esoTalk.debug"),
-		"language" => $this->jsLanguage
-	) + (array)$this->jsData;
-	$head .= "<script>var ET=".json_encode($esoTalkJS)."</script>";
 
 	// Finally, append the custom HTML string constructed via $this->addToHead().
 	$head .= $this->head;

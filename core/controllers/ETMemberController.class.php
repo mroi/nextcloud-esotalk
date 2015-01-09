@@ -45,7 +45,8 @@ public function action_name($name = "")
 	$result = ET::SQL()
 		->select("memberId, username")
 		->from("member")
-		->where("username", $name)
+		->where("username LIKE :name")
+		->bind(":name", $name."%")
 		->exec();
 
 	if ($row = $result->firstRow())
@@ -53,7 +54,7 @@ public function action_name($name = "")
 
 	// If we didn't find the member, run the index function with a false argument (which will in turn show
 	// a not found error.)
-	$this->index(false);
+	$this->action_index(false);
 }
 
 

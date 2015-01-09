@@ -222,7 +222,9 @@ function sendEmail($to, $subject, $body)
 	$mail->AddAddress($to);
 	$mail->SetFrom(C("esoTalk.emailFrom"), sanitizeForHTTP(C("esoTalk.forumTitle")));
 	$mail->Subject = sanitizeForHTTP($subject);
+	$mail->AltBody = strip_tags($body);
 	$mail->Body = $body;
+	$mail->Encoding = 'quoted-printable';
 
 	return $mail->Send();
 }
@@ -456,9 +458,9 @@ function slug($string)
 	ET::trigger("slug", array(&$string));
 
 	// Now replace non-alphanumeric characters with a hyphen, and remove multiple hyphens.
-	$slug = strtolower(trim(preg_replace(array("/[^0-9a-z]/i", "/-+/"), "-", $string), "-"));
+	$slug = mb_strtolower(trim(preg_replace(array("/[^0-9a-z]/i", "/-+/"), "-", $string), "-"), "UTF-8");
 
-	return substr($slug, 0, 63);
+	return mb_substr($slug, 0, 63, "UTF-8");
 }
 
 
@@ -853,31 +855,31 @@ function relativeTime($then, $precise = false)
 
 	// If this happened over a year ago, return "x years ago".
 	if ($ago >= ($period = 60 * 60 * 24 * 365.25)) {
-		$years = floor($ago / $period);
+		$years = round($ago / $period);
 		return Ts("%d year ago", "%d years ago", $years);
 	}
 
 	// If this happened over two months ago, return "x months ago".
 	elseif ($ago >= ($period = 60 * 60 * 24 * (365.25 / 12)) * 2) {
-		$months = floor($ago / $period);
+		$months = round($ago / $period);
 		return Ts("%d month ago", "%d months ago", $months);
 	}
 
 	// If this happend over a week ago, return "x weeks ago".
 	elseif ($ago >= ($period = 60 * 60 * 24 * 7)) {
-		$weeks = floor($ago / $period);
+		$weeks = round($ago / $period);
 		return Ts("%d week ago", "%d weeks ago", $weeks);
 	}
 
 	// If this happened over a day ago, return "x days ago".
 	elseif ($ago >= ($period = 60 * 60 * 24)) {
-		$days = floor($ago / $period);
+		$days = round($ago / $period);
 		return Ts("%d day ago", "%d days ago", $days);
 	}
 
 	// If this happened over an hour ago, return "x hours ago".
 	elseif ($ago >= ($period = 60 * 60)) {
-		$hours = floor($ago / $period);
+		$hours = round($ago / $period);
 		return Ts("%d hour ago", "%d hours ago", $hours);
 	}
 
@@ -886,7 +888,7 @@ function relativeTime($then, $precise = false)
 
 		// If this happened over a minute ago, return "x minutes ago".
 		if ($ago >= ($period = 60)) {
-			$minutes = floor($ago / $period);
+			$minutes = round($ago / $period);
 			return Ts("%d minute ago", "%d minutes ago", $minutes);
 		}
 
@@ -1069,26 +1071,4 @@ function addToArrayString(&$array, $key, $value, $position = false)
 
 	// Combine the new keys/values!
 	$array = array_combine($keys, $values);
-}
-
-
-
-if (function_exists("lcfirst") === false) {
- 
-/**
- * Make a string's first character lowercase.
- * 
- * NOTE: Is included in PHP 5 >= 5.3.0
- * 
- * @param string $str The input string.
- * @return string 
- *
- * @package esoTalk
- */
-function lcfirst($str)
-{
-	$str[0] = strtolower($str[0]);
-	return $str;
-}
-
 }
