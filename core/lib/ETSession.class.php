@@ -375,6 +375,11 @@ public function getNavigation($currentId)
 		if ($return["id"] == $currentId) $return = prev($navigation);
 		return $return;
 	}
+	elseif (strpos($currentId, C("esoTalk.defaultRoute")) !== 0) {
+		// fallback navigation to the default entry point
+		$start = C("esoTalk.defaultRoute");
+		return array("id" => $start, "type" => "start", "url" => URL($start));
+	}
 	else return false;
 }
 
