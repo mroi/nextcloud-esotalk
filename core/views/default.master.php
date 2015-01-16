@@ -18,7 +18,7 @@ if (!defined("IN_ESOTALK")) exit;
 <?php echo $data["head"]; ?>
 </head>
 
-<body class='<?php echo $data["bodyClass"]; ?>'>
+<body class='default <?php echo $data["bodyClass"]; ?>'>
 <?php $this->trigger("pageStart"); ?>
 
 <div id='messages'>

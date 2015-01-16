@@ -31,7 +31,7 @@ $(function() {
 </script>
 </head>
 
-<body class='<?php echo $data["bodyClass"]; ?>'>
+<body class='mobile <?php echo $data["bodyClass"]; ?>'>
 <?php $this->trigger("pageStart"); ?>
 
 <div id='messages'>
