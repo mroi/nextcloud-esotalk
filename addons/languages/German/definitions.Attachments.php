@@ -2,7 +2,7 @@
 // Copyright 2013 Toby Zerner, Simon Zerner
 // This file is part of esoTalk. Please see the included license file for usage information.
 
-// German Definitions for the Answers plugin.
+// German definitions for the Attachments plugin.
 
 $definitions["Attach a file"] = "Datei anh&auml;ngen";
 $definitions["Drop files to upload"] = "Dateien zum Hochladen hier hinziehen";
