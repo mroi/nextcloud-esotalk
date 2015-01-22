@@ -5,5 +5,5 @@
 // German definitions for the Views plugin.
 
 $definitions["gambit.order by views"] = "Nach Aufrufen sortieren";
-$definitions["%s view"] = "%s view";
-$definitions["%s views"] = "%s views";
+$definitions["%s view"] = "%s Aufruf";
+$definitions["%s views"] = "%s Aufrufe";

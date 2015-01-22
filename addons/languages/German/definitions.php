@@ -76,6 +76,7 @@ $definitions["Approve"] = "Best&auml;tigen";
 $definitions["Automatically star conversations that I reply to"] = "Unterhaltungen, an denen ich teilnehme, automatisch folgen.";
 $definitions["Avatar"] = "Avatar";
 
+$definitions["Back to administration"] = "Zur&uuml;ck zur Administration";
 $definitions["Back to channels"] = "Zur&uuml;ck zu den Kan&auml;len";
 $definitions["Back to conversation"] = "Zur&uuml;ck zur Unterhaltung";
 $definitions["Back to member"] = "Zur&uuml;ck zum Benutzer";
@@ -107,7 +108,7 @@ $definitions["Channels"] = "Kan&auml;le";
 $definitions["Choose a Channel"] = "Kanal w&auml;hlen";
 $definitions["Choose a secure password of at least %s characters"] = "W&auml;hle ein sicheres Passwort mit mindestens %s Zeichen";
 $definitions["Choose what people will see when they first visit your forum."] = "Was sollen Leute sehen, wenn sie das Forum zum ersten Mal besuchen?";
-$definitions["Click on a member's name to remove them."] = "Klicke zum L&ouml;schen auf den Namen eine Mitglieds.";
+$definitions["Click on a member's name to remove them."] = "Klicke zum L&ouml;schen auf den Namen eines Mitglieds.";
 $definitions["Close registration"] = "Registrierung schlie&szlig;en";
 $definitions["Confirm password"] = "Passwort best&auml;tigen";
 $definitions["Controls"] = "Optionen";
@@ -206,6 +207,7 @@ $definitions["Home page"] = "Startseite";
 $definitions["HTML is allowed."] = "HTML ist erlaubt.";
 
 $definitions["If you run into any other problems or just want some help with the installation, feel free to ask for assistance at the <a href='%s'>esoTalk support forum</a>."] = "Wenn Du Probleme oder Fragen bei der Installation hast, kannst Du im <a href='%s'>esoTalk Support Forum</a> einfach um Hilfe bitten.";
+$definitions["Ignore conversation"] = "Unterhaltung ignorieren";
 $definitions["Install esoTalk"] = "Installiere esoTalk";
 $definitions["Install My Forum"] = "Installiere My Forum";
 $definitions["Installed Languages"] = "Installierte Sprachen";
@@ -225,7 +227,7 @@ $definitions["label.draft"] = "Entwurf";
 $definitions["label.locked"] = "Gesperrt";
 $definitions["label.ignored"] = "Ignoriert";
 $definitions["label.private"] = "Privat";
-$definitions["label.sticky"] = "Sticky";
+$definitions["label.sticky"] = "Angeheftet";
 $definitions["Labels"] = "Label";
 $definitions["Last active"] = "Zuletzt aktiv";
 $definitions["Last active %s"] = "Zuletzt aktiv %s";
@@ -304,6 +306,7 @@ $definitions["Posts"] = "Beitr&auml;ge";
 $definitions["Powered by"] = "Powered by";
 $definitions["Preview"] = "Vorschau";
 $definitions["Previous"] = "&Auml;ltere";
+$definitions["Privacy"] = "Privatsph&auml;re";
 
 $definitions["Quote"] = "Zitat";
 $definitions["quote"] = "zitieren";
@@ -359,7 +362,7 @@ $definitions["statistic.online.plural"] = "%s online";
 $definitions["statistic.online"] = "%s online";
 $definitions["statistic.post.plural"] = "%s Beitr&auml;ge";
 $definitions["statistic.post"] = "%s Beitrag";
-$definitions["Sticky"] = "Sticky";
+$definitions["Sticky"] = "Anheften";
 $definitions["Subscribe"] = "Abonnieren";
 $definitions["Subscribed"] = "Abonniert";
 $definitions["Subscription"] = "Abonnement";
@@ -421,7 +424,7 @@ $definitions["message.cannotEditSinceReply"] = "Du kannst Deinen Beitrag nicht m
 $definitions["message.changesSaved"] = "Deine &Auml;nderungen wurden gespeichert.";
 $definitions["message.channelsHelp"] = "Kan&auml;le k&ouml;nnen verwendet werden, um Deine Unterhaltungen zu kategorisieren. Du kannst soviele Kan&auml;le anlegen, wie Du m&ouml;chtest, und sie per Drag &amp; Drop anordnen.";
 $definitions["message.channelSlugTaken"] = "Diese Kurz-URI wird schon in einem anderen Kanal verwendet.";
-$definitions["message.confirmDelete"] = "Bist Du sicher, dass Du das l&ouml;schen willst? Ehrlich, Du wirst es nicht mehr zur&uum;ckbekommen.";
+$definitions["message.confirmDelete"] = "Bist Du sicher, dass Du das l&ouml;schen willst? Ehrlich, Du wirst es nicht mehr zur&uuml;ckbekommen.";
 $definitions["message.confirmDiscardReply"] = "Du hast Deine Antwort noch nicht als Entwurf gespeichert. Bist Du sicher, dass Du sie verwerfen willst?";
 $definitions["message.confirmEmail"] = "Bevor Du mit Deinem neuen Zugang arbeiten kannst, mu&szlig;t Du zuerst Deine E-Mailadresse best&auml;tigen. In den n&auml;chsten Minuten erh&auml;ltst Du von uns eine E-Mail mit einem Link, mit dem Du Deine Mitgliedschaft best&auml;tigen kannst.";
 $definitions["message.confirmLeave"] = "Woah, Du hast Deinen Entwurf nicht gespeichert! Sobald Du diese Seite verl&auml;sst, verlierst Du alle ggf. eingegebenen Daten. Is this ok?";
@@ -453,6 +456,7 @@ $definitions["message.gambitsHelp"] = "Gambits are phrases that describe what yo
 $definitions["message.gdNotEnabledWarning"] = "The <strong>GD extension</strong> is not enabled.<br/><small>This is required to resize and save avatars. Get your host or administrator to install/enable it.</small>";
 $definitions["message.greaterMySQLVersionRequired"] = "You must have <strong>MySQL 4 or greater</strong> installed and the <a href='http://php.net/manual/en/mysql.installation.php' target='_blank'>MySQL extension enabled in PHP</a>.<br/><small>Please install/upgrade both of these requirements or request that your host or administrator install them.</small>";
 $definitions["message.greaterPHPVersionRequired"] = "Your server must have <strong>PHP 5.0.0 or greater</strong> installed to run esoTalk.<br/><small>Please upgrade your PHP installation or request that your host or administrator upgrade the server.</small>";
+$definitions["message.groupsHelp"] = "Mitglieder des Forums k&ouml;nnen in Gruppen eingeordnet werden. Du kannst so viele Gruppen anlegen wie ben&ouml;tigt.";
 $definitions["message.incorrectLogin"] = "Diese Zugangsdaten sind nicht korrekt.";
 $definitions["message.incorrectPassword"] = "Das aktuelle Passwort ist nicht korrekt.";
 $definitions["message.installerAdminHelp"] = "esoTalk braucht die folgenden Daten, um den Administrator-Zugang f&uuml;r das Forum anzulegen.";
@@ -543,22 +547,23 @@ $definitions["email.post.body"] = "<p><strong>%1\$s</strong> hat auf eine Unterh
 // These gambits are pretty much evaluated as-they-are.
 // tag:, author:, contributor:, and quoted: are combined with a value after the colon (:).
 // For example: tag:video games, author:myself
-$definitions["gambit.author:"] = "author:";
-$definitions["gambit.contributor:"] = "teilnehmer:";
-$definitions["gambit.member"] = "mitgleid";
+$definitions["gambit.author:"] = "Autor: ";
+$definitions["gambit.contributor:"] = "Teilnehmer: ";
+$definitions["gambit.member"] = "Mitglied";
 $definitions["gambit.myself"] = "ich";
-$definitions["gambit.draft"] = "entwurf";
+$definitions["gambit.draft"] = "Entwurf";
 $definitions["gambit.locked"] = "geschlossen";
 $definitions["gambit.order by newest"] = "sortiere nach Datum";
 $definitions["gambit.order by replies"] = "sortiere nach Antworten";
 $definitions["gambit.private"] = "privat";
-$definitions["gambit.random"] = "zufall";
+$definitions["gambit.random"] = "zuf&auml;llig";
 $definitions["gambit.reverse"] = "Reihenfolge umkehren";
 $definitions["gambit.starred"] = "verfolgt";
 $definitions["gambit.ignored"] = "ignoriert";
-$definitions["gambit.sticky"] = "angepint";
+$definitions["gambit.sticky"] = "angeheftet";
+$definitions["gambit.title:"] = "Titel: ";
 $definitions["gambit.unread"] = "ungelesen";
-$definitions["gambit.limit:"] = "limit:";
+$definitions["gambit.limit:"] = "Limit: ";
 
 // Aliases
 // These are gambits which tell the gambit system to use another gambit.
@@ -575,7 +580,7 @@ $definitions["gambit.has >10 replies"] = "hat >10 Antworten";
 $definitions["gambit.has no replies"] = "hat keine Antworten";
 $definitions["gambit.has 0 replies"] = "hat 0 Antworten";
 
-$definitions["gambit.dead"] = "tot";
+$definitions["gambit.dead"] = "inaktiv";
 $definitions["gambit.active >30 day"] = ">30 Tage aktiv";
 
 // Units of time
@@ -589,7 +594,7 @@ $definitions["gambit.week"] = "Woche";
 $definitions["gambit.month"] = "Monat";
 $definitions["gambit.year"] = "Jahr";
 $definitions["gambit.last"] = "zuletzt"; // as in "active last 180 days"
-$definitions["gambit.active"] = "Aktiv"; // as in "active last 180 days"
+$definitions["gambit.active"] = "aktiv"; // as in "active last 180 days"
 
 // Now the hard bit. This is a regular expression to test for the "active" gambit.
 // The group (?<a> ... ) is the comparison operator (>, <, >=, <=, or last).
