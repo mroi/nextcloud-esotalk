@@ -189,6 +189,7 @@ public function get($wheres = array())
 			->select("1", "canDeleteConversation");
 	}
 
+
 	// Execute the query.
 	$result = $sql->exec();
 	if (!$result->numRows()) return false;
@@ -204,6 +205,9 @@ public function get($wheres = array())
 
 	// If the conversation is locked and the user can't moderate, then they can't reply.
 	if ($conversation["locked"] and !$conversation["canModerate"]) $conversation["canReply"] = false;
+
+	// The user can edit members allowed if they are the author AND no one else has posted in this conversation.
+	$conversation["canEditMembersAllowed"] = ET::$session->userId == $conversation["startMemberId"] && $conversation["countPosts"] <= 1;
 
 	// If the current user owns this conversation, and it's a draft, or they're the only poster,
 	// then allow them to delete it. We can only know that they're the only poster if there is only
@@ -280,7 +284,8 @@ public function getEmptyConversation()
 		"channelPermissionView" => array(),
 		"labels" => array(),
 		"canModerate" => true,
-		"canReply" => true
+		"canReply" => true,
+		"canEditMembersAllowed" => true
 	);
 	// Add the private label if there are entities in the membersAllowed session store.
 	if (ET::$session->get("membersAllowed")) {
@@ -700,6 +705,10 @@ public function addReply(&$conversation, $content)
 	// is called, each individual user will receive a maximum of one.
 	ET::activityModel()->startNotificationGroup();
 
+	if (($returns = $this->trigger("addReplyBefore", array($conversation, &$content))) && count($returns)) {
+		return reset($returns);
+	}
+
 	// Create the post. If there were validation errors, get them from the post model and add them to this model.
 	$postModel = ET::postModel();
 	$postId = $postModel->create($conversation["conversationId"], ET::$session->userId, $content, $conversation["title"]);
@@ -718,23 +727,33 @@ public function addReply(&$conversation, $content)
 	// Also update the conversation's start time if this is the first post.
 	if ($conversation["countPosts"] == 0) $update["startTime"] = $time;
 
-	$this->updateById($conversation["conversationId"], $update);
-
 	// If the user had a draft saved in this conversation before adding this reply, erase it now.
 	// Also, if the user has the "star on reply" option checked, star the conversation.
-	$update = array();
-	if ($conversation["draft"]) $update["draft"] = null;
-	if (ET::$session->preference("starOnReply")) $update["starred"] = true;
-	if (count($update)) {
+	$updateStatus = array();
+	if ($conversation["draft"]) $updateStatus["draft"] = null;
+	if (ET::$session->preference("starOnReply")) $updateStatus["starred"] = true;
+
+	if (($returns = $this->trigger("addReplyBeforeUpdateConversation", array($conversation, &$update, &$updateStatus))) && count($returns)) {
+		return reset($returns);
+	}
+
+	// Commit our changes to the database!
+	$this->updateById($conversation["conversationId"], $update);
+	if (count($updateStatus)) {
 		$this->setStatus($conversation["conversationId"], ET::$session->userId, $update);
 	}
+
+	// Update the conversation details.
+	$conversation["countPosts"]++;
+	$conversation["lastPostTime"] = $time;
+	$conversation["lastPostMemberId"] = ET::$session->userId;
 
 	// Send out notifications to people who have starred this conversation.
 	// We get all members who have starred the conversation and have no unread posts in it.
 	$sql = ET::SQL()
 		->from("member_conversation s", "s.conversationId=:conversationId AND s.type='member' AND s.id=m.memberId AND s.starred=1 AND s.lastRead>=:posts AND s.id!=:userId", "inner")
 		->bind(":conversationId", $conversation["conversationId"])
-		->bind(":posts", $conversation["countPosts"])
+		->bind(":posts", $conversation["countPosts"] - 1)
 		->bind(":userId", ET::$session->userId);
 	$members = ET::memberModel()->getWithSQL($sql);
 
@@ -745,14 +764,13 @@ public function addReply(&$conversation, $content)
 	);
 	$emailData = array("content" => $content);
 
+	if (($returns = $this->trigger("addReplyBeforeCreateActivity", array($conversation, $postId, &$data, &$emailData))) && count($returns)) {
+		return reset($returns);
+	}
+
 	foreach ($members as $member) {
 		ET::activityModel()->create("post", $member, ET::$session->user, $data, $emailData);
 	}
-
-	// Update the conversation details.
-	$conversation["countPosts"]++;
-	$conversation["lastPostTime"] = $time;
-	$conversation["lastPostMemberId"] = ET::$session->userId;
 
 	// If this is the first reply (ie. the conversation was a draft and now it isn't), send notifications to
 	// members who are in the membersAllowed list.
