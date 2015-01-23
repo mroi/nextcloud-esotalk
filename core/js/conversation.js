@@ -520,19 +520,19 @@ update: function() {
 initPosts: function() {
 
 	// Add tooltips to post controls.
-	$("#conversationPosts .controls a").tooltip({alignment: "center"});
+	$("#conversationPosts .controls a, #conversationPosts .controls span").tooltip({alignment: "center"});
 	$("#conversationPosts h3 a").tooltip({alignment: "left", className: "withArrow withArrowBottom"});
 	$("#conversationPosts .time").tooltip({alignment: "left", className: "withArrow withArrowBottom"});
 	$("#conversationPosts .online").tooltip({alignment: "left", offset: [-9, 0], className: "withArrow withArrowBottom"}).css("cursor", "pointer");
 
 	// Add click handlers to the post controls.
-	$(document).on("click", "#conversationPosts .controls .control-edit", function(e) {
+	$(document).on("click", "#conversationPosts .controls .control-edit:not(.disabled)", function(e) {
 		var postId = $(this).parents(".post").data("id");
 		ETConversation.editPost(postId);
 		e.preventDefault();
 	});
 
-	$(document).on("click", "#conversationPosts .controls .control-delete", function(e) {
+	$(document).on("click", "#conversationPosts .controls .control-delete:not(.disabled)", function(e) {
 		var postId = $(this).parents(".post").data("id");
 		ETConversation.deletePost(postId);
 		e.preventDefault();
@@ -569,6 +569,12 @@ initPosts: function() {
 
 initPost: function(post) {
 	ETConversation.collapseQuotes(post);
+
+	$(post).find('[data-timestamp]').each(function() {
+		$this = $(this);
+		var date = new Date(parseInt($this.data('timestamp')) * 1000);
+		$this.attr('title', date.toString());
+	})
 },
 
 // Collapse quotes and add expand buttons.
@@ -630,7 +636,7 @@ deletePost: function(postId) {
 			hideLoadingOverlay("p" + postId, true);
 		},
 		success: function(data) {
-			if (data.messages) return;
+			if (data.messages || data.modalMessage) return;
 			$("#p"+postId).replaceWith(data.view);
 			ETConversation.redisplayAvatars();
 		}
@@ -652,7 +658,7 @@ restorePost: function(postId) {
 			hideLoadingOverlay("p" + postId, true);
 		},
 		success: function(data) {
-			if (data.messages) return;
+			if (data.messages || data.modalMessage) return;
 			$("#p"+postId).replaceWith(data.view);
 			ETConversation.redisplayAvatars();
 			ETConversation.collapseQuotes($("#p"+postId));
