@@ -16,7 +16,7 @@ ET::$languageInfo["German"] = array(
 // Define the character set that this language uses.
 $definitions["charset"] = "utf-8";
 
-$definitions["date.full"] = "j M Y, g:ia \G\M\TO"; // see http://au.php.net/manual/en/function.date.php for details
+$definitions["date.full"] = "%c";
 
 $definitions["%d day ago"] = "gestern";
 $definitions["%d days ago"] = "vor %d Tagen";
@@ -104,6 +104,7 @@ $definitions["Channel List"] = "Kanal-Liste";
 $definitions["Channel title"] = "Titel des Kanals";
 $definitions["Channel slug"] = "Kanal-URI";
 $definitions["Channels"] = "Kan&auml;le";
+$definitions["Choose a Channel"] = "Kanal w&auml;hlen";
 $definitions["Choose a secure password of at least %s characters"] = "W&auml;hle ein sicheres Passwort mit mindestens %s Zeichen";
 $definitions["Choose what people will see when they first visit your forum."] = "Was sollen Leute sehen, wenn sie das Forum zum ersten Mal besuchen?";
 $definitions["Click on a member's name to remove them."] = "Klicke zum L&ouml;schen auf den Namen eine Mitglieds.";
