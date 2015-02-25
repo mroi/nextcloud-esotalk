@@ -182,6 +182,9 @@ public function whitespace()
 	// Add paragraphs and breakspaces.
 	$this->content = "<p>".str_replace(array("\n\n", "\n"), array("</p><p>", "<br/>"), $this->content)."</p>";
 
+	// Convert paragraphs with embedded lists to <div>.
+	$this->content = preg_replace("/<p>((?:(?!<\/p).)*)((?:<ul>|<ol>)(?:(?!<\/ul)(?!<\/ol).)*(?:<\/ul>|<\/ol>))((?:(?!<\/p).)*)<\/p>/", "<div><p>$1</p>$2<p>$3</p></div>", $this->content);
+
 	// Strip empty paragraphs.
 	$this->content = preg_replace(array("/<p>\s*<\/p>/i", "/(?<=<p>)\s*(?:<br\/>)*/i", "/\s*(?:<br\/>)*\s*(?=<\/p>)/i"), "", $this->content);
 	$this->content = str_replace("<p></p>", "", $this->content);
@@ -257,12 +260,12 @@ public function lists()
 	// We do this by matching against 2 or more lines which begin with a number, passing them together to a
 	// callback function, and then wrapping each line with <li> tags.
 	$this->content = preg_replace_callback("/(?:^[0-9]+[.)]\s+([^\n]*)(?:\n|$)){2,}/m", function ($matches) {
-		return '</p><ol>'.preg_replace("/^[0-9]+[.)]\s+([^\n]*)(?:\n|$)/m", "<li>$1</li>", trim($matches[0])).'</ol><p>';
+		return '<ol>'.preg_replace("/^[0-9]+[.)]\s+([^\n]*)(?:\n|$)/m", "<li>$1</li>", trim($matches[0]))."</ol>\n";
 	}, $this->content);
 
 	// Same goes for unordered lists, but with a -, *, or &bull; instead of a number.
 	$this->content = preg_replace_callback("/(?:^ *(?:[-*]|&bull;)\s*([^\n]*)(?:\n|$)){2,}/m", function ($matches) {
-		return '</p><ul>'.preg_replace("/^ *(?:[-*]|&bull;)\s*([^\n]*)(?:\n|$)/m", "<li>$1</li>", trim($matches[0])).'</ul><p>';
+		return '<ul>'.preg_replace("/^ *(?:[-*]|&bull;)\s*([^\n]*)(?:\n|$)/m", "<li>$1</li>", trim($matches[0]))."</ul>\n";
 	}, $this->content);
 
 	return $this;
