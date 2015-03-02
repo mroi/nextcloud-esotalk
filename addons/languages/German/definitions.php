@@ -3,7 +3,7 @@
 // This file is part of esoTalk. Please see the included license file for usage information.
 
 ET::$languageInfo["German"] = array(
-	"locale" => "de_DE",
+	"locale" => "de_DE.UTF-8",
 	"name" => "German",
 	"description" => "Deutsches Sprachpaket.",
 	"version" => ESOTALK_VERSION,
