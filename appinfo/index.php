@@ -10,8 +10,8 @@ class SimpleTemplate extends OCP\Template {
 		$this->content = $content;
 		parent::__construct($app, $app, 'user');
 	}
-	protected function findTemplate($theme, $app, $name, $fext) {
-		if ($name !== $app) return parent::findTemplate($theme, $app, $name, $fext);
+	protected function findTemplate($theme, $app, $name) {
+		if ($name !== $app) return parent::findTemplate($theme, $app, $name);
 		return array('', $app);
 	}
 	protected function load($file, $params = null) {
