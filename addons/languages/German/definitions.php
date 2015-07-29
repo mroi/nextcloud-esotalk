@@ -401,7 +401,7 @@ $definitions["View all notifications"] = "Alle Benachrichtigungen ansehen";
 $definitions["View more"] = "Mehr";
 $definitions["View your profile"] = "Profil ansehen";
 $definitions["View"] = "Ansehen";
-$definitions["Viewing: %s"] = "Gezeigt: %s";
+$definitions["Viewing: %s"] = "Liest gerade: %s";
 $definitions["viewingPosts"] = "<b>%s-%s</b> von %s Beitr&auml;gen";
 
 $definitions["Warning"] = "Uh oh, irgendwas stimmt hier nicht!";
