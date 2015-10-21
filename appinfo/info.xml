@@ -4,6 +4,6 @@
 	<name>Message Board</name>
 	<licence>GPL</licence>
 	<author>esoTalk team, adapted by Michael Roitzsch</author>
-	<require>8</require>
 	<description>This app integrates the esoTalk forum into ownCloud. It provides a communication board to have discussions between users.</description>
+	<version>0.2</version>
 </info>
