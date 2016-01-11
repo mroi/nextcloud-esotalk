@@ -20,9 +20,6 @@ class ETUpgradeModel extends ETModel {
  */
 public function checkForUpdates()
 {
-	// Save the last update check time so we won't do it again for a while.
-	ET::writeConfig(array("esoTalk.admin.lastUpdateCheckTime" => time()));
-
 	// If the latest version is different to what it was last time we checked...
 	$info = C("esoTalk.admin.lastUpdateCheckInfo", array("version" => ESOTALK_VERSION));
 	if (($package = ET::checkForUpdates()) and $package["version"] != $info["version"]) {

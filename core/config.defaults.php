@@ -131,7 +131,6 @@ $config["esoTalk.defaultRoute"] = "conversations";
 $config["esoTalk.minPasswordLength"] = 6;
 $config["esoTalk.userOnlineExpire"] = 300; // Number of seconds a user's 'last seen time' is before the user 'goes offline'.
 $config["esoTalk.sitemapCacheTime"] = 3600; // Keep sitemaps for at least 1 hour.
-$config["esoTalk.updateCheckInterval"] = 86400; // How often esoTalk should ping esotalk.org to check for a new version. Default = 1 day. Set to 0 to disable update checking.
 
 // Default user preferences.
 $config["esoTalk.preferences.email.privateAdd"] = true;

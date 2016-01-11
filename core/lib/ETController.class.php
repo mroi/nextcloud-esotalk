@@ -267,11 +267,6 @@ public function notificationMessages($notifications)
  */
 public function init()
 {
-	// Check for updates to the esoTalk software, but only if we're the root admin and we haven't checked in
-	// a while.
-	if (ET::$session->userId == C("esoTalk.rootAdmin") and C("esoTalk.admin.lastUpdateCheckTime") + C("esoTalk.updateCheckInterval") < time())
-		ET::upgradeModel()->checkForUpdates();
-
 	if ($this->responseType === RESPONSE_TYPE_DEFAULT) {
 
 		// If the user IS NOT logged in, add the 'login' and 'sign up' links to the bar.
