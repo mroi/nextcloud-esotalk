@@ -6,4 +6,7 @@
 	<author>esoTalk team, adapted by Michael Roitzsch</author>
 	<description>This app integrates the esoTalk forum into ownCloud. It provides a communication board to have discussions between users.</description>
 	<version>0.2</version>
+	<dependencies>
+		<owncloud min-version="9.0" max-version="9.99" />
+	</dependencies>
 </info>
