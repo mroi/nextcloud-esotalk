@@ -7,3 +7,6 @@
 [submodule "addons/plugins/Likes"]
 	path = addons/plugins/Likes
 	url = https://github.com/esotalk/Likes.git
+[submodule "addons/plugins/Attachments"]
+	path = addons/plugins/Attachments
+	url = https://github.com/esotalk/Attachments.git
