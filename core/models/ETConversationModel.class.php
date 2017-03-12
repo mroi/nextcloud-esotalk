@@ -749,11 +749,10 @@ public function addReply(&$conversation, $content)
 	$conversation["lastPostMemberId"] = ET::$session->userId;
 
 	// Send out notifications to people who have starred this conversation.
-	// We get all members who have starred the conversation and have no unread posts in it.
+	// We get all members who have starred the conversation.
 	$sql = ET::SQL()
-		->from("member_conversation s", "s.conversationId=:conversationId AND s.type='member' AND s.id=m.memberId AND s.starred=1 AND s.lastRead>=:posts AND s.id!=:userId", "inner")
+		->from("member_conversation s", "s.conversationId=:conversationId AND s.type='member' AND s.id=m.memberId AND s.starred=1 AND s.id!=:userId", "inner")
 		->bind(":conversationId", $conversation["conversationId"])
-		->bind(":posts", $conversation["countPosts"] - 1)
 		->bind(":userId", ET::$session->userId);
 	$members = ET::memberModel()->getWithSQL($sql);
 
