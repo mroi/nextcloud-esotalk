@@ -1,4 +1,5 @@
 /.htaccess
+/.user.ini
 /cache/*
 /config/*
 /uploads/*
