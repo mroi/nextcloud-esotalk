@@ -1,4 +1,4 @@
-.htaccess
-cache/*
-config/*
-uploads/*
+/.htaccess
+/cache/*
+/config/*
+/uploads/*
