@@ -136,6 +136,7 @@ $config["esoTalk.sitemapCacheTime"] = 3600; // Keep sitemaps for at least 1 hour
 // Default user preferences.
 $config["esoTalk.preferences.email.privateAdd"] = true;
 $config["esoTalk.preferences.email.post"] = true;
+$config["esoTalk.preferences.email.postChannel"] = true;
 $config["esoTalk.preferences.email.mention"] = true;
 $config["esoTalk.preferences.starOnReply"] = false;
 $config["esoTalk.preferences.starPrivate"] = false;
