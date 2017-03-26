@@ -463,7 +463,7 @@ public function store($key, $value)
  *
  * @return mixed
  */
-public function get($key, $default = null)
+public function get($key = null, $default = null)
 {
 	return isset($_SESSION[$key]) ? $_SESSION[$key] : $default;
 }

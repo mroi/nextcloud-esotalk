@@ -69,7 +69,7 @@ public function create(&$values)
 
 	if ($this->errorCount()) return false;
 
-	$memberId = parent::create($values);
+	$memberId = parent::createRecord($values);
 	$values["memberId"] = $memberId;
 
 	$this->trigger("createAfter", array($values));

@@ -256,7 +256,7 @@ public function create($values)
 
 	if ($this->errorCount()) return false;
 
-	$channelId = parent::create($values);
+	$channelId = parent::createRecord($values);
 
 	// Reset channels in the global cache.
 	ET::$cache->remove(self::CACHE_KEY);

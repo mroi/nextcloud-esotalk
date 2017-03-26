@@ -33,6 +33,13 @@ public function __construct()
 }
 
 
+/* forward creation to parent */
+public function create($values)
+{
+	return parent::createRecord($values);
+}
+
+
 // TODO: OVERRIDE ALL PARENT METHODS TO ADD PERMISSION CHECK FOR ADMIN
 
 

@@ -205,7 +205,7 @@ public function create($conversationId, $memberId, $content, $title = "")
 		"title" => $title
 	);
 
-	$id = parent::create($data);
+	$id = parent::createRecord($data);
 
 	// Update the member's post count.
 	ET::SQL()

@@ -57,7 +57,7 @@ public function __construct($table = "", $primaryKey = "")
  * @param array $values An array of data to insert into the table.
  * @return int The new record's ID.
  */
-public function create($values)
+public function createRecord($values)
 {
 	ET::SQL()->insert($this->table)
 		->set($values)

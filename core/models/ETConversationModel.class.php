@@ -622,7 +622,7 @@ public function create($data, $membersAllowed = array(), $isDraft = false)
 	$data["countPosts"] = $isDraft ? 0 : 1;
 
 	// Insert the conversation into the database.
-	$conversationId = parent::create($data);
+	$conversationId = parent::createRecord($data);
 
 	// Update the member's conversation count.
 	ET::SQL()

@@ -120,7 +120,7 @@ public function create($type, $member, $fromMember = null, $data = null, $emailD
 
 	// If this activity type has notification or activity projections, we'll need to insert the activity into the database.
 	if (!empty($projections[self::PROJECTION_NOTIFICATION]) or !empty($projections[self::PROJECTION_ACTIVITY])) {
-		$activityId = parent::create($activity + array("data" => serialize($data)));
+		$activityId = parent::createRecord($activity + array("data" => serialize($data)));
 	}
 
 	// Set some more information about the activity.
