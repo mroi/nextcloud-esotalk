@@ -470,6 +470,11 @@ public function render($view = "")
 
 			// Add the details for the "back" button.
 			$data["backButton"] = ET::$session->getNavigation($this->navigationId);
+			if (!$data["backButton"] and strpos($this->navigationId, C("esoTalk.defaultRoute")) !== 0) {
+				// fallback navigation to the default entry point
+				$start = C("esoTalk.defaultRoute");
+				$data["backButton"] = array("id" => $start, "type" => "start", "url" => URL($start));
+			}
 
 			// Get common menu items.
 			foreach ($this->menus as $menu => $items)
