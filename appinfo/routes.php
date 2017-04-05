@@ -1,2 +1,2 @@
 <?php
-$this->create('board_index', '/')->actionInclude('board/appinfo/index.php');
+$this->create('board_iframe', '/')->actionInclude('board/appinfo/iframe.php');

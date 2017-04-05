@@ -1,9 +1,9 @@
 <?php
 OCP\User::checkLoggedIn();
-OCP\App::checkAppEnabled('board');
-OCP\App::setActiveNavigationEntry('board');
+\OC::$server->getNavigationManager()->setActiveEntry(\OC::$REQUESTEDAPP);
 
 // use a custom template subclass to avoid the need for an extra templates subdirectory
+// attention: this uses Nextcloud private APIs
 class SimpleTemplate extends OCP\Template {
 	private $content;
 	public function __construct($app, $content) {
@@ -22,10 +22,10 @@ class SimpleTemplate extends OCP\Template {
 
 ob_start();
 ?>
-	<div style="height:100%;overflow:auto;-webkit-overflow-scrolling:touch;"><iframe src="<?php echo OCP\Util::linkToAbsolute('board', '') ?>" style="width:100%;height:100%;margin-bottom:-5px;"></iframe></div>
+	<div style="height:100%;overflow:auto;-webkit-overflow-scrolling:touch;"><iframe src="<?php echo \OC::$server->getURLGenerator()->linkTo(\OC::$REQUESTEDAPP, '') ?>" style="width:100%;height:100%;margin-bottom:-5px;"></iframe></div>
 <?php
 $iframe = ob_get_contents();
 @ob_end_clean();
 
-$template = new SimpleTemplate('board', $iframe);
+$template = new SimpleTemplate(\OC::$REQUESTEDAPP, $iframe);
 $template->printPage();
