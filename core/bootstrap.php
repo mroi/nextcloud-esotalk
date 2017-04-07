@@ -55,9 +55,7 @@ set_exception_handler(array("ET", "fatalError"));
 
 // Determine the relative path to this forum. For example, if the forum is at http://forum.com/test/forum/,
 // the web path should be /test/forum.
-$parts = explode("/", $_SERVER["PHP_SELF"]);
-$key = array_search("index.php", $parts);
-if ($key !== false) ET::$webPath = implode("/", array_slice($parts, 0, $key));
+ET::$webPath = rtrim(\OC::$server->getURLGenerator()->linkTo(\OC::$REQUESTEDAPP, ''), '/');
 
 // Undo register_globals.
 undoRegisterGlobals();
@@ -216,7 +214,7 @@ if (!empty($_GET["p"])) {
 elseif (C("esoTalk.urls.friendly") and isset($_SERVER["REQUEST_URI"])) {
 
 	// Remove the base path from the request URI.
-	$request = preg_replace("|^".preg_quote(ET::$webPath)."(/index\.php)?|", "", $_SERVER["REQUEST_URI"]);
+	$request = preg_replace("|^(/index\.php)?".preg_quote(ET::$webPath)."(/index\.php)?|", "", $_SERVER["REQUEST_URI"]);
 
 	// If there is a querystring, remove it.
 	$selfURL = $request;

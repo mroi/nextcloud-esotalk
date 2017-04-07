@@ -2,6 +2,12 @@
 OCP\User::checkLoggedIn();
 \OC::$server->getNavigationManager()->setActiveEntry(\OC::$REQUESTEDAPP);
 
+if (count(\OC::$server->getRequest()->getParams())) {
+	// request includes parameters, this is not for us
+	require(__DIR__ . '/../index.php');
+	return;
+}
+
 // use a custom template subclass to avoid the need for an extra templates subdirectory
 // attention: this uses Nextcloud private APIs
 class SimpleTemplate extends OCP\Template {
@@ -22,7 +28,7 @@ class SimpleTemplate extends OCP\Template {
 
 ob_start();
 ?>
-	<div style="height:100%;overflow:auto;-webkit-overflow-scrolling:touch;"><iframe src="<?php echo \OC::$server->getURLGenerator()->linkTo(\OC::$REQUESTEDAPP, '') ?>" style="width:100%;height:100%;margin-bottom:-5px;"></iframe></div>
+	<div style="height:100%;overflow:auto;-webkit-overflow-scrolling:touch;"><iframe src="<?php echo \OC::$server->getURLGenerator()->linkToRoute('board_index', array('p' => 'conversations')) /* TODO: hardcoded default route */ ?>" style="width:100%;height:100%;margin-bottom:-5px;"></iframe></div>
 <?php
 $iframe = ob_get_contents();
 @ob_end_clean();

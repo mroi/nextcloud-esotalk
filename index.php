@@ -1,4 +1,7 @@
 <?php
+OCP\User::checkLoggedIn();
+\OC::$server->getNavigationManager()->setActiveEntry(\OC::$REQUESTEDAPP);
+
 // OMG FIRST COMMENT!!!11!
 // Copyright 2013 Toby Zerner, Simon Zerner
 // This file is part of esoTalk. Please see the included license file for usage information.

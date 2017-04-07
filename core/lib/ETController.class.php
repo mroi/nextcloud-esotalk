@@ -331,6 +331,10 @@ public function init()
  */
 public function redirect($url, $code = 302)
 {
+	// We must never redirect to the base, neither absolute nor relative,
+	// because this would nest us in another iframe.
+	if ($url == C("esoTalk.baseURL") or $url == ET::$webPath."/")
+		$url .= C("esoTalk.defaultRoute");
 	if ($this->responseType === RESPONSE_TYPE_AJAX or $this->responseType === RESPONSE_TYPE_JSON or $this->responseType === RESPONSE_TYPE_VIEW) {
 		if ($this->responseType === RESPONSE_TYPE_VIEW) $this->responseType = RESPONSE_TYPE_AJAX;
 		$this->json("redirect", $url);
