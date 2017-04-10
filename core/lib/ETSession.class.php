@@ -48,37 +48,17 @@ public $ip;
  */
 public function __construct()
 {
-	// Start a session.
-	session_name(C("esoTalk.cookie.name")."_session");
-	session_start();
-	if (empty($_SESSION["token"])) $this->regenerateToken();
-
-	// Complicate session highjacking - check the current user agent against the one that initiated the session.
-	if (md5($_SERVER["HTTP_USER_AGENT"]) != $_SESSION["userAgent"]) session_destroy();
+	$sql = ET::SQL()
+		->select("m.memberId")
+		->where("m.ncUid = :uid")
+		->bind(":uid", \OC::$server->getUserSession()->getUser()->getUID())
+		->from("member m");
+	$user = $sql->exec()->firstRow();
 
 	// Set the class properties to reference session variables.
-	$this->token = &$_SESSION["token"];
-	$this->ip = $_SERVER["REMOTE_ADDR"];
-	$this->userId = &$_SESSION["userId"];
-
-	// If a persistent login cookie is set, attempt to log in.
-	if (C("esoTalk.enablePersistenceCookies") and !$this->userId and ($cookie = $this->getCookie("persistent"))) {
-
-		// Get the token and member ID from the cookie.
-		$token = substr($cookie, -32);
-		$memberId = (int)substr($cookie, 0, -32);
-
-		// Find a user with this memberId and token.
-		$member = ET::memberModel()->get(array(
-			"m.memberId" => $memberId,
-			"rememberToken" => $token
-		));
-
-		// If we found them, log them in.
-		if ($member) {
-			$this->loginWithMemberId($memberId);
-		}
-	}
+	$this->token = \OC::$server->getSession()->getId();
+	$this->ip = \OC::$server->getRequest()->getRemoteAddress();
+	$this->userId = $user ? $user["memberId"] : null;
 
 	// If there's a user logged in, get their user data.
 	if ($this->userId and C("esoTalk.installed")) $this->refreshUserData();
