@@ -1,0 +1,70 @@
+/* disable some unwanted elements */
+#hdr #mainMenu,
+#hdr #userMenu .item-user,
+#hdr #userMenu .item-logout,
+#body #memberPanes .item-password,
+#ftr {
+	display:none;
+}
+
+/* beautify overall layout and alignment */
+body.default #hdr-content,
+body.default #body-content,
+body.default #ftr-content {
+	min-width:700px;
+}
+body.mobile #body-content {
+	padding:0;
+}
+#hdr #backButton {
+	margin-left:0;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+body.mobile #hdr #backButton {
+	font-size:16px;
+}
+body.default #hdr .link-newConversation {
+	min-width:124px;
+}
+body.mobile #hdr #userMenu li.sep {
+	display:none;
+}
+body.mobile a.button {
+	height:1em;
+}
+
+/* beautify conversation list by moving some icons around */
+.conversationList .col-replies {
+	text-align:right;
+}
+.conversationList li {
+	position:relative;
+}
+body.default .conversationList .unreadIndicator {
+	display:inline-block;
+	position:absolute;
+	left:4.7em;
+	color:#1d2d44;  // primary color
+}
+body.mobile .conversationList .unreadIndicator {
+	display:none;
+}
+body.default .conversationList .label:first-child {
+	display:inline-block;
+	position:absolute;
+	left:3.8em;
+	top:14px;
+}
+body.mobile .conversationList .label:first-child {
+	display:inline-block;
+	position:absolute;
+	left:9px;
+	top:36px;
+}
+
+/* <div>s in postings (and posting preview) group items with no vertical spacing between them */
+.postBody div:not(.preview) *:not(:last-child),
+.preview div *:not(:last-child) {
+	margin-bottom:0;
+}
