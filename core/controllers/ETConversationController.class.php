@@ -219,9 +219,6 @@ public function action_index($conversationId = false, $year = false, $month = fa
 		$this->addJSFile("core/js/autocomplete.js");
 		$this->addJSFile("core/js/conversation.js");
 
-		// Add the RSS feed button.
-		// $this->addToMenu("meta", "feed", "<a href='".URL("conversation/index.atom/".$url)."' id='feed'>".T("Feed")."</a>");
-
 		$controls = ETFactory::make("menu");
 
 		// Ignore conversation control

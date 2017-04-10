@@ -111,9 +111,6 @@ public function action_index($channelSlug = false)
 		// Update the user's last action.
 		ET::memberModel()->updateLastAction("search");
 
-		// Add a link to the RSS feed in the bar.
-		// $this->addToMenu("meta", "feed", "<a href='".URL(str_replace("conversations/", "conversations/index.atom/", $url))."' id='feed'>".T("Feed")."</a>");
-
 		$controls = ETFactory::make("menu");
 
 		// Mark as read controls
