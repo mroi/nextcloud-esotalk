@@ -237,9 +237,8 @@ Disallow: /conversation/start/");
 	// Clear the session of install data.
 	ET::$session->remove("install");
 
-	// Re-initialize the session and log the administrator in.
+	// Re-initialize the session.
 	ET::$session = ETFactory::make("session");
-	ET::$session->loginWithMemberId(1);
 
 	// Redirect them to the administration page.
 	$this->redirect(URL("admin"));
