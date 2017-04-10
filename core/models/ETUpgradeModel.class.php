@@ -142,8 +142,6 @@ protected function structure($drop = false)
 		->column("account", "enum('administrator','member','suspended')", "member")
 		->column("confirmed", "tinyint(1)", 0)
 		->column("password", "char(64)", "")
-		->column("resetPassword", "char(32)")
-		->column("rememberToken", "char(32)")
 		->column("joinTime", "int(11) unsigned", false)
 		->column("lastActionTime", "int(11) unsigned")
 		->column("lastActionDetail", "tinyblob")
@@ -158,8 +156,6 @@ protected function structure($drop = false)
 		->key("lastActionTime")
 		->key("account")
 		->key("countPosts")
-		->key("resetPassword")
-		->key("rememberToken")
 		->exec($drop);
 
 	// Member-channel table.
