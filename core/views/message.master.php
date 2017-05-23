@@ -16,7 +16,7 @@ if (!defined("IN_ESOTALK")) exit;
 		<title><?php echo sanitizeHTML($data["pageTitle"]); ?></title>
 		<meta charset='<?php echo T("charset", "utf-8"); ?>'>
 		<?php if (!empty($data["head"])) echo $data["head"]; ?>
-		<link type="text/css" rel="stylesheet" href="<?php echo C("esoTalk.baseURL"); ?>../../core/css/fonts.css">
+		<link type="text/css" rel="stylesheet" href="<?php echo C("esoTalk.baseURL"); ?>../../core/css/fonts.scss">
 		<style>
 			body {
 				margin: 0;
