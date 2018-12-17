@@ -206,7 +206,7 @@ public function links()
 		array($this, "linksCallback"), $this->content);
 
 	// Convert email links.
-	$this->content = preg_replace("/[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/i", "<a href='mailto:$0' class='link-email'>$0</a>", $this->content);
+	$this->content = preg_replace("/[\w\.-]+@([\w-]+\.)+[\w-]{2,4}/i", "<a href='mailto:$0' class='link-email'>$0</a>", $this->content);
 
 	return $this;
 }
