@@ -1,3 +1,11 @@
+/* use system front */
+body,
+input,
+textarea,
+select {
+	font-family:-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+
 /* disable some unwanted elements */
 #hdr #mainMenu,
 #hdr #userMenu .item-user,

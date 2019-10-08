@@ -31,7 +31,6 @@ class ETSkin_Default extends ETSkin {
  */
 public function handler_init($sender)
 {
-	$sender->addCSSFile("../../core/css/fonts.scss", true);
 	$sender->addCSSFile("core/skin/base.css", true);
 	$sender->addCSSFile("core/skin/font-awesome.css", true);
 	$sender->addCSSFile($this->resource("styles.css"), true);
