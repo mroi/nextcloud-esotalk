@@ -1,11 +1,3 @@
-/* use system front */
-body,
-input,
-textarea,
-select {
-	font-family:-apple-system,'Segoe UI',Roboto,sans-serif;
-}
-
 /* disable some unwanted elements */
 #hdr #mainMenu,
 #hdr #userMenu .item-user,
@@ -13,6 +5,30 @@ select {
 #body #memberPanes .item-password,
 #ftr {
 	display:none;
+}
+
+/* use system front and adjust font sizes */
+body,
+input,
+textarea,
+select {
+	font-family:-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+#hdr #backButton {
+	font-size:16px;
+}
+.conversationList .title {
+	font-size:14px;
+	font-weight:400;
+}
+#conversationTitle {
+	font-weight:600;
+}
+body.default .postBody {
+	font-size:14px;
+}
+body.mobile .postBody {
+	font-size:12px;
 }
 
 /* beautify overall layout and alignment */
@@ -28,9 +44,6 @@ body.mobile #body-content {
 	margin-left:0;
 	white-space:nowrap;
 	text-overflow:ellipsis;
-}
-body.mobile #hdr #backButton {
-	font-size:16px;
 }
 body.default #hdr .link-newConversation {
 	min-width:124px;
