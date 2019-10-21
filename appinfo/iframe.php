@@ -2,8 +2,9 @@
 OCP\User::checkLoggedIn();
 \OC::$server->getNavigationManager()->setActiveEntry(\OC::$REQUESTEDAPP);
 
-if (count(\OC::$server->getRequest()->getParams())) {
-	// request includes parameters, this is not for us
+// check if we should generate the iframe wrapper page or the iframe content
+if (!empty($_GET['p'])) {
+	// request includes path parameter, generate iframe content
 	require(__DIR__ . '/../index.php');
 	return;
 }
