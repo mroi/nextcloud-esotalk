@@ -2,6 +2,18 @@
 OCP\User::checkLoggedIn();
 \OC::$server->getNavigationManager()->setActiveEntry(\OC::$REQUESTEDAPP);
 
+// emit headers, including a working content security policy
+$response = new OCP\AppFramework\Http\Response();
+$csp = new OCP\AppFramework\Http\ContentSecurityPolicy();
+$csp->allowInlineScript(true);
+$csp->addAllowedChildSrcDomain('\'self\'');
+$csp->addAllowedChildSrcDomain('www.youtube-nocookie.com');
+$csp->addAllowedChildSrcDomain('player.vimeo.com');
+$response->setContentSecurityPolicy($csp);
+foreach ($response->getHeaders() as $name => $value) {
+	header($name . ': ' . $value);
+}
+
 // check if we should generate the iframe wrapper page or the iframe content
 if (!empty($_GET['p'])) {
 	// request includes path parameter, generate iframe content
