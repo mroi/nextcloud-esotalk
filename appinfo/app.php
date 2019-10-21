@@ -4,7 +4,7 @@
 	return [
 		'id' => 'board',
 		'order' => -1,
-		'href' => $urlGenerator->linkToRoute('board_iframe'),
+		'href' => $urlGenerator->linkToRoute('board_start'),
 		'icon' => $urlGenerator->imagePath('activity', 'activity.svg'),
 		'name' => \OC::$server->getL10N('board')->t('Forum')
 	];
