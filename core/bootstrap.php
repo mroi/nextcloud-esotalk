@@ -60,14 +60,6 @@ ET::$webPath = rtrim(\OC::$server->getURLGenerator()->linkTo(\OC::$REQUESTEDAPP,
 // Undo register_globals.
 undoRegisterGlobals();
 
-// If magic quotes is on, strip the slashes that it added.
-if (get_magic_quotes_gpc()) {
-	$_REQUEST = array_map("undoMagicQuotes", $_REQUEST);
-	$_GET = array_map("undoMagicQuotes", $_GET);
-	$_POST = array_map("undoMagicQuotes", $_POST);
-	$_COOKIE = array_map("undoMagicQuotes", $_COOKIE);
-}
-
 
 //***** 2. INCLUDE CONFIGURATION
 

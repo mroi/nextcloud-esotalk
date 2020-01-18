@@ -472,23 +472,6 @@ function generateRandomString($numOfChars, $possibleChars = "abcdefghijklmnopqrs
 
 
 /**
- * For bad server configs. Pretty much just performing stripslashes on an array here.
- *
- * @param mixed $value The value to undo magic quotes on.
- * @return mixed
- *
- * @package esoTalk
- */
-function undoMagicQuotes($value)
-{
-
-	if (!is_array($value)) return stripslashes($value);
-	else array_map("undoMagicQuotes", $value);
-	return $value;
-}
-
-
-/**
  * For bad server configs as well. Unset all input variables added to the global namespace if register_globals
  * is on.
  *
