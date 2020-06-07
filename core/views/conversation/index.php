@@ -20,7 +20,7 @@ function makeURL($startFrom = 0, $searchString = "")
 	global $conversation;
 	$urlParts = array(conversationURL($conversation["conversationId"], $conversation["title"]));
 
-	if ($startFrom > 0 or $startFrom[0] == "p" or $startFrom == "last" or $startFrom == "unread" or $searchString) $urlParts[] = $startFrom;
+	if ($startFrom > 0 or strval($startFrom)[0] == "p" or $startFrom == "last" or $startFrom == "unread" or $searchString) $urlParts[] = $startFrom;
 	if ($searchString) $urlParts[] = "?search=$searchString";
 
 	return implode("/", $urlParts);

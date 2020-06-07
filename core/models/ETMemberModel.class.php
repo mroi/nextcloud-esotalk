@@ -525,10 +525,10 @@ public static function getLastActionInfo($time, $action)
 {
 	// If there is no action, or the time passed since the user was last seen is too great, then return no info.
 	if (!$action or $time < time() - C("esoTalk.userOnlineExpire"))
-		return false;
+		return array(null, null);
 
 	$data = unserialize($action);
-	if (!isset($data["type"])) return false;
+	if (!isset($data["type"])) return array(null, null);
 
 	// If there's a callback for this last action type, return its output.
 	if (isset(self::$lastActionTypes[$data["type"]]))
