@@ -7,6 +7,6 @@
 	<description>This app integrates the esoTalk forum into Nextcloud. It provides a communication board to have discussions between users.</description>
 	<version>0.5</version>
 	<dependencies>
-		<nextcloud min-version="17" />
+		<nextcloud min-version="19" />
 	</dependencies>
 </info>
