@@ -41,7 +41,7 @@ class SimpleTemplate extends OCP\Template {
 
 ob_start();
 ?>
-	<div style="width:100%;position:absolute;top:50px;bottom:0;overflow:auto;-webkit-overflow-scrolling:touch;"><iframe id="iframe" src="<?php echo \OC::$server->getURLGenerator()->linkToRoute('board_content', array('p' => 'conversations')) /* TODO: hardcoded default route */ ?>" style="width:100%;height:100%;margin-bottom:-6px;"></iframe></div>
+	<div style="width:100%;position:absolute;top:50px;bottom:0;overflow:auto;-webkit-overflow-scrolling:touch;"><iframe id="iframe" src="<?php echo \OC::$server->getURLGenerator()->linkToRoute('board_content', array('p' => 'conversations')) /* TODO: hardcoded default route */ ?>" style="width:100%;height:100%;margin-bottom:-7px;"></iframe></div>
 	<script type="text/javascript">
 		var iframe = document.getElementById('iframe');
 		var basepath = '<?php echo \OC::$server->getURLGenerator()->linkToRoute('board_start') ?>';
