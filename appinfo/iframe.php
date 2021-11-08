@@ -1,5 +1,5 @@
 <?php
-OCP\User::checkLoggedIn();
+OC_Util::checkLoggedIn();
 \OC::$server->getNavigationManager()->setActiveEntry(\OC::$REQUESTEDAPP);
 
 // emit headers, including a working content security policy
