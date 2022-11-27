@@ -894,10 +894,10 @@ function smartTime($then, $precise = false)
 	if ($ago >= 0 and $ago < 48 * 60 * 60) return relativeTime($then, $precise);
 
 	// If the time is within the last half a year or the next half a year, show just a month and a day.
-	elseif ($ago < 180 * 24 * 60 * 60) return strftime("%b %e", $then);
+	elseif ($ago < 180 * 24 * 60 * 60) return _strftime("%b %e", $then);
 
 	// Otherwise, show the month, day, and year.
-	else return strftime(($precise ? "%e " : "")."%b %Y", $then);
+	else return _strftime(($precise ? "%e " : "")."%b %Y", $then);
 }
 
 
@@ -1048,10 +1048,7 @@ function addToArrayString(&$array, $key, $value, $position = false)
 }
 
 
-function ensureUtf8($text) {
-    return iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);
-}
-
 function _strftime($format, $time = null) {
-    return ensureUtf8(strftime($format, $time));
+    // TODO: strftime is deprecated in PHP 8.1
+    return strftime($format, $time);
 }
