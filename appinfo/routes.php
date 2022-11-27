@@ -39,7 +39,13 @@ class IframeController extends \OCP\AppFramework\Controller {
 			</script>
 		IFRAME;
 
-		return new HTMLResponse($iframe);
+		$response = new HTMLResponse($iframe);
+
+		$csp = new \OCP\AppFramework\Http\ContentSecurityPolicy();
+		$csp->addAllowedScriptDomain('\'sha256-SAnhMxMi7x7OPtXfG13eeBPVjj1/s0cYm+asG1Keejk=\'');
+		$response->setContentSecurityPolicy($csp);
+
+		return $response;
 	}
 
 	/**
@@ -91,7 +97,10 @@ class BoardResponse extends \OCP\AppFramework\Http\TemplateResponse {
 
 	public function __construct(string $path) {
 		parent::__construct(\OC::$REQUESTEDAPP, '');
+		$this->path = $path;
+	}
 
+	public function render() {
 		$csp = new \OCP\AppFramework\Http\ContentSecurityPolicy();
 		$csp->allowInlineScript(true);
 		$csp->addAllowedChildSrcDomain('\'self\'');
@@ -99,10 +108,6 @@ class BoardResponse extends \OCP\AppFramework\Http\TemplateResponse {
 		$csp->addAllowedChildSrcDomain('player.vimeo.com');
 		$this->setContentSecurityPolicy($csp);
 
-		$this->path = $path;
-	}
-
-	public function render() {
 		foreach ($this->getHeaders() as $name => $value) {
 			header($name . ': ' . $value);
 		}
