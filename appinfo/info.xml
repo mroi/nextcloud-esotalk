@@ -1,12 +1,22 @@
 <?xml version="1.0"?>
-<info>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
 	<id>board</id>
+	<namespace>Board</namespace>
 	<name>Message Board</name>
-	<licence>GPL</licence>
-	<author>esoTalk team, adapted by Michael Roitzsch</author>
 	<description>This app integrates the esoTalk forum into Nextcloud. It provides a communication board to have discussions between users.</description>
-	<version>0.5</version>
+	<version>0.6</version>
+	<licence>AGPL</licence>
+	<author>esoTalk team, adapted by Michael Roitzsch</author>
+	<bugs>https://github.com/mroi/nextcloud-esotalk</bugs>
 	<dependencies>
-		<nextcloud min-version="19" />
+		<nextcloud min-version="22" />
 	</dependencies>
+	<navigations>
+		<navigation>
+			<name>Forum</name>
+			<route>board.iframe.index</route>
+			<icon>/apps/activity/img/activity.svg</icon>
+			<order>-1</order>
+		</navigation>
+	</navigations>
 </info>
