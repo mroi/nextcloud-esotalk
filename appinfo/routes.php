@@ -101,8 +101,7 @@ class BoardResponse extends \OCP\AppFramework\Http\TemplateResponse {
 	}
 
 	public function render() {
-		$csp = new \OCP\AppFramework\Http\ContentSecurityPolicy();
-		$csp->allowInlineScript(true);
+		$csp = new InlineScriptPolicy();
 		$csp->addAllowedChildSrcDomain('\'self\'');
 		$csp->addAllowedChildSrcDomain('www.youtube-nocookie.com');
 		$csp->addAllowedChildSrcDomain('player.vimeo.com');
@@ -116,6 +115,17 @@ class BoardResponse extends \OCP\AppFramework\Http\TemplateResponse {
 		require(__DIR__ . '/../index.php');
 
 		exit();
+	}
+}
+
+
+// custom content security policy that allows inline scripts
+class InlineScriptPolicy extends \OCP\AppFramework\Http\ContentSecurityPolicy {
+
+	public function buildPolicy() {
+		$policy = parent::buildPolicy();
+		$policy = preg_replace('/script-src /', 'script-src \'unsafe-inline\' ', $policy);
+		return $policy;
 	}
 }
 
