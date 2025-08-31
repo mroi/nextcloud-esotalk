@@ -4,7 +4,8 @@ namespace OCA\Board\Controller;
 
 $routes = ['routes' => [
 	['name' => 'iframe#index', 'url' => '/'],
-	['name' => 'iframe#content', 'url' => '/{path}', 'requirements' => array('path' => '.+')]
+	['name' => 'iframe#content', 'url' => '/', 'verb' => 'POST', 'postfix' => '.post'],
+	['name' => 'iframe#content', 'url' => '/{p}', 'requirements' => ['p' => '.+'], 'postfix' => '.get']
 ]];
 
 
@@ -22,7 +23,7 @@ class IframeController extends \OCP\AppFramework\Controller {
 	 */
 	public function index() {
 		$link_index = $this->urlGenerator->linkToRoute('board.iframe.index');
-		$link_content = $this->urlGenerator->linkToRoute('board.iframe.content', ['path' => 'conversations']);
+		$link_content = $this->urlGenerator->linkToRoute('board.iframe.content.get', ['p' => 'conversations']);
 
 		$iframe = <<<IFRAME
 			<div style="width:100%;overflow:auto;-webkit-overflow-scrolling:touch;"><iframe id="iframe" src="$link_content" style="width:100%;height:100%;margin-bottom:-6px;"></iframe></div>
@@ -52,8 +53,8 @@ class IframeController extends \OCP\AppFramework\Controller {
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 */
-	public function content(string $path) {
-		return new BoardResponse($path);
+	public function content(string $p) {
+		return new BoardResponse($p);
 	}
 }
 
@@ -92,11 +93,11 @@ class InlineTemplate extends \OCP\Template {
 }
 
 
-class BoardResponse extends \OCP\AppFramework\Http\TemplateResponse {
+class BoardResponse extends \OCP\AppFramework\Http\Response {
 	private $path;
 
 	public function __construct(string $path) {
-		parent::__construct(\OC::$REQUESTEDAPP, '');
+		parent::__construct();
 		$this->path = $path;
 	}
 
