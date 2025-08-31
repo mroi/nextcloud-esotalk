@@ -13,6 +13,12 @@ class ETSQLResult {
 
 
 /**
+ * Class name.
+ * @var string
+ */
+public $className;
+
+/**
  * The PDOStatement object.
  * @var PDOStatement
  */
